@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- property-binding -->
+            <p style="font-weight: bold;">Property Binding</p>
+            <p [innerText]="allowNewServer"></p>
+            <button class="btn btn-primary" [disabled]="!allowNewServer">Server</button>
+        </div>
+        <div class="col-md-4">
+            <!-- string-interpolation -->
+            <p style="font-weight: bold;">String Interpolation</p>
+            <p>{{allowNewServer}}</p>
+        </div>
+        <div class="col-md-4">
+            <!-- event-binding -->
+            <p style="font-weight: bold;">Event Binding</p>
+            <input type="text" [(ngModel)]="serverName" />
+            <button class="btn btn-primary" (click)="onServerCreation()" [disabled]="!allowNewServer">Server</button>
+            <p>{{serverCreationStatus}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <p style="font-weight: bold;">Old Event Binding using $event</p>
+            <input type="text" (input)="onUpdateServer($event)" />
+            <p style="font-weight: bold;">Event Binding using [(ngModel)]</p>
+            <input type="text" [(ngModel)]="serverName" />
+        </div>
+        <div class="col-md-4">
+            <p>{{serverName}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <p style="font-weight: bold;">Directives</p>
+            <input type="text" [(ngModel)]="serverName" />
+            <button class="btn btn-primary" (click)="onServerCreation()" [disabled]="!allowNewServer">Server</button>
+            <p *ngIf="serverCreated; else noServer">{{serverCreationStatus}}</p>
+            <ng-template #noServer>
+                <p>No server was created!</p>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <app-server></app-server>
+        <app-server></app-server>
+        <app-server></app-server>
+    </div>
+</div>
